@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id = "china-pub" class = "com.sjf.bean.Bookstore">
+		<property name="name" value="china-pub"/>
+		<property name="books">
+			<map>
+				<entry key="spring" value-ref="spring in action"/>
+				<entry key="spark" value-ref="spark in action"/>
+				<entry key="java" value-ref="java for busy"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id = "spring in action" class = "com.sjf.bean.Book">
+		<property name="name" value = "Spring实战"/>
+		<property name="author" value="Craig Walls"/>
+		<property name="price" value="59.00"/>
+	</bean>
+	
+	<bean id = "spark in action" class = "com.sjf.bean.Book">
+		<property name="name" value = "Spark大数据处理技术"/>
+		<property name="author" value="夏俊鸾"/>
+		<property name="price" value="65.00"/>
+	</bean>
+	
+	<bean id = "java for busy" class = "com.sjf.bean.Book">
+		<property name="name" value = "写给大忙人看的Java SE 8"/>
+		<property name="author" value="Cay S. Horstmann"/>
+		<property name="price" value="59.00"/>
+	</bean>
+	
+	<bean id = "java core" class = "com.sjf.bean.Book">
+		<property name="name" value = "Java 核心技术卷一"/>
+		<property name="author" value="Cay S. Horstmann"/>
+		<property name="price" value="99.00"/>
+	</bean>
+	
+	<bean id = "yoona" class = "com.sjf.bean.Student">
+		<property name="name"  value = "xiaosi"/>
+		<property name="age" value = "21" />	
+		<property name="hobby">
+			<bean class = "com.sjf.bean.Hobby">
+				<property name="desc" value = "喜欢踢足球，打羽毛球"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id = "xidian" class = "com.sjf.bean.School">
+		<property name = "name" value = "西电"/>
+	</bean>
+</beans>

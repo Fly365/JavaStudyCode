@@ -6,11 +6,11 @@
 	<bean id = "china-pub" class = "com.sjf.bean.Bookstore">
 		<property name="name" value="china-pub"/>
 		<property name="books">
-			<map>
-				<entry key="spring" value-ref="spring in action"/>
-				<entry key="spark" value-ref="spark in action"/>
-				<entry key="java" value-ref="java for busy"/>
-			</map>
+			<props>
+				<prop key="spring" >spring in action</prop>
+				<prop key="spark" >spark in action</prop>
+				<prop key="java" >java for busy</prop>
+			</props>
 		</property>
 	</bean>
 	

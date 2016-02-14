@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.sjf.mapper.StudentMapper">
+	
+	<resultMap id="StudentResultMap" type="com.sjf.bean.Student" >
+		<id property="stuID" column="ID"/>
+		<result property="stuName" column="name"/>
+		<result property="age" column="age"/>
+		<result property="school" column="school"/>
+	</resultMap>
+	
+	<resultMap  id="StudentWithAddressResultMap" type="com.sjf.bean.Student" extends="StudentResultMap">
+		<result property="address.addressID" column="addressID"/>
+		<result property="address.country" column="country"/>
+		<result property="address.province" column="province"/>
+		<result property="address.city" column="city"/>
+	</resultMap>
+	
+	<select id="getStudentByID" parameterType="int" resultMap="StudentResultMap"> 
+    	select * from Student where ID = #{ID} 
+  	</select>
+  	
+  	<select id="getAllStudents" resultMap="StudentWithAddressResultMap">
+  		SELECT S.ID,name,age,school,A.ID as addressID,country,province,city 
+  		FROM Student S LEFT OUTER JOIN Address A ON S.addressID = A.ID
+  	</select>
+</mapper> 

@@ -3,7 +3,7 @@
 <mapper namespace="com.sjf.mapper.StudentMapper">
 
 	<resultMap id = "AddressResultMap" type="com.sjf.bean.Address" >
-		<id property="ID" column="addressID"/>
+		<id property="ID" column="ID"/>
 		<result property="country" column="country"/>
 		<result property="province" column="province"/>
 		<result property="city" column="city"/>

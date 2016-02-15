@@ -8,7 +8,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		StudentService service = new StudentService();
-		Student student = service.getStudentWithAddressByID(1);
+		Student student = service.getStudentWithAddressByID(2);
 		System.out.println(student.toString());
 	}
 }

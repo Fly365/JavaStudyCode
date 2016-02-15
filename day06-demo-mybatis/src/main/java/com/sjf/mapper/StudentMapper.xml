@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.sjf.mapper.StudentMapper">
+
+	<resultMap id = "AddressResultMap" type="com.sjf.bean.Address" >
+		<id property="ID" column="addressID"/>
+		<result property="country" column="country"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="street" column="street"/>
+	</resultMap>
 	
 	<resultMap id="StudentWithAddressResultMap" type="com.sjf.bean.Student" >
 		<id property="ID" column="ID"/>
 		<result property="name" column="name"/>
 		<result property="age" column="age"/>
 		<result property="school" column="school"/>
-		<result property="address.ID" column="addressID"/>
-		<result property="address.country" column="country"/>
-		<result property="address.province" column="province"/>
-		<result property="address.city" column="city"/>
-		<result property="address.street" column="street"/>
+		<association property = "address" resultMap = "AddressResultMap"/>
 	</resultMap>
 	
-	<select id="getStudentWithAddressByID" parameterType="int" resultMap="StudentWithAddressResultMap"> 
+	<resultMap id="StudentWithAddressResultMap2" type="com.sjf.bean.Student" >
+		<id property="ID" column="ID"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<result property="school" column="school"/>
+		<association property = "address" javaType = "com.sjf.bean.Address">
+			<id property="ID" column="addressID"/>
+			<result property="country" column="country"/>
+			<result property="province" column="province"/>
+			<result property="city" column="city"/>
+			<result property="street" column="street"/>
+		</association>
+	</resultMap>
+	
+	<select id="getStudentWithAddressByID" parameterType="int" resultMap="StudentWithAddressResultMap2"> 
     	SELECT S.ID,name,age,school,A.ID as addressID,country,province,city,street 
   		FROM Student S 
   		LEFT OUTER JOIN Address A 
   		ON S.addressID = A.ID
   		WHERE S.ID = #{ID} 
   	</select>
-
 </mapper> 

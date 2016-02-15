@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.sjf.mapper.StudentMapper">
+
+	<resultMap id = "AddressResultMap" type="com.sjf.bean.Address" >
+		<id property="ID" column="addressID"/>
+		<result property="country" column="country"/>
+		<result property="province" column="province"/>
+		<result property="city" column="city"/>
+		<result property="street" column="street"/>
+	</resultMap>
+	
+	<select id = "getAddressByID" parameterType="int" resultMap="AddressResultMap">
+		SELECT * FROM Address WHERE ID = #{ID}
+	</select>
+	
+	<resultMap id="StudentWithAddressResultMap" type="com.sjf.bean.Student" >
+		<id property="ID" column="ID"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<result property="school" column="school"/>
+		<association property="address" column="addressID" select = "getAddressByID"/>
+	</resultMap>
+	
+	<select id="getStudentWithAddressByID" parameterType="int" resultMap="StudentWithAddressResultMap"> 
+    	SELECT * FROM Student WHERE ID = #{ID} 
+  	</select>
+</mapper> 
